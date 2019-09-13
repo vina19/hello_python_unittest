@@ -51,11 +51,17 @@ class ClassList:
     ## TODO add a method called is_class_full.
     # This should return True or False to indicate if the class is full.
 
+    def is_class_full(self, max_students):
+        ''' Return true if the class capacity equal to the max_student else return false '''
+        
+        if len(self.class_list) == self.max_students:
+            return True
+        else:
+            return False
+
 
     def __str__(self):
         return ", ".join(self.class_list)
-
-
 
 
 def main():
