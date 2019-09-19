@@ -28,13 +28,10 @@ class TestPhoneManager(unittest.TestCase):
 
         testAssignmentMgr = PhoneAssignments()
         testAssignmentMgr.add_phone(testPhone1)
-        testAssignmentMgr.add_phone(testPhone3)
-
-        with self.assertRaises(PhoneError):
-            testAssignmentMgr.add_phone(testPhone3)
-
+            
         with self.assertRaises(PhoneError):
             testAssignmentMgr.add_phone(testPhone2)
+            testAssignmentMgr.add_phone(testPhone3)
 
 
     def test_create_and_add_new_employee(self):
@@ -148,7 +145,7 @@ class TestPhoneManager(unittest.TestCase):
         testAssignmentMgr.assign(testPhone1.id, testEmployee1)
         testAssignmentMgr.un_assign(testPhone1.id)
 
-        self.assertFalse(testEmployee1.id, testPhone1.employee_id)
+        self.assertEqual(None, testAssignmentMgr.phone_info(testEmployee1))
 
 
     def test_get_phone_info_for_employee(self):
@@ -179,7 +176,7 @@ class TestPhoneManager(unittest.TestCase):
         self.assertTrue(testPhone1.id, testAssignmentMgr.phone_info(testEmployee1))
         self.assertTrue(testPhone2.id, testAssignmentMgr.phone_info(testEmployee2))
 
-        self.assertIsNone(None, testAssignmentMgr.phone_info(testEmployee3))
+        self.assertEqual(None, testAssignmentMgr.phone_info(testEmployee3))
 
         with self.assertRaises(PhoneError):
             testAssignmentMgr.phone_info(testEmployee4)
