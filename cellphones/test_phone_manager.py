@@ -24,6 +24,7 @@ class TestPhoneManager(unittest.TestCase):
         # TODO you'll need to modify PhoneAssignments.add_phone() to make this test pass
         testPhone1 = Phone(1, 'Apple', 'iPhone 6')
         testPhone2 = Phone(1, 'Apple', 'iPhone 5')
+        testPhone3 = Phone(1, 'Apple', 'iPhone 7')
 
         testAssignmentMgr = PhoneAssignments()
         testAssignmentMgr.add_phone(testPhone1)
