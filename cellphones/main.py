@@ -34,6 +34,5 @@ def main():
     assignments.assign(phone2.id, employee3)   # Reassign phone 3 to employee3. TODO this should fail; employee3 should not be able to have two phones
 
 
-
 if __name__ == '__main__':
     main()
