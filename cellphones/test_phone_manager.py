@@ -71,17 +71,30 @@ class TestPhoneManager(unittest.TestCase):
         testAssignmentMgr.add_employee(testEmployee1)
         testAssignmentMgr.add_phone(testPhone1)
 
-        testAssignmentMgr.assign(1, testEmployee1)
+        testAssignmentMgr.assign(testPhone1.id, testEmployee1)
 
-        self.assertEqual(testPhone1, testAssignmentMgr.phone_info(testEmployee1))
+        self.assertEqual(testEmployee1.id, testPhone1.employee_id)
         
 
     def test_assign_phone_that_has_already_been_assigned_to_employee(self):
         # If a phone is already assigned to an employee, it is an error to assign it to a different employee. A PhoneError should be raised.
         # TODO write this test and remove the self.fail() statement
         # TODO you'll need to fix the assign method in PhoneAssignments so it throws an exception if the phone is alreaady assigned.
+        testEmployee1 = Employee(1, 'Marissa')
+        testEmployee2 = Employee(2, 'Christine')
 
-        
+        testPhone1 = Phone(1, 'Apple', 'iPhone 6')
+
+        testAssignmentMgr = PhoneAssignments()
+        testAssignmentMgr.add_employee(testEmployee1)
+        testAssignmentMgr.add_employee(testEmployee2)
+        testAssignmentMgr.add_phone(testPhone1)
+
+        testAssignmentMgr.assign(testPhone1.id, testEmployee1)
+
+        with self.assertRaises(PhoneError):
+            testAssignmentMgr.assign(testPhone1.id, testEmployee2)
+
 
     def test_assign_phone_to_employee_who_already_has_a_phone(self):
         # TODO write this test and remove the self.fail() statement
